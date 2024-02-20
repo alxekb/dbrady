@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rspec'
-require 'bot'
+require './lib/bot'
 
 RSpec.describe Bot::ComThetrainline do # rubocop:disable Metrics/BlockLength
   describe '@find' do # rubocop:disable Metrics/BlockLength
