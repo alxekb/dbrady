@@ -1,0 +1,8 @@
+lib/bot.rb b9f0c98997e64cb503bd8b89afb6d8350da6cc35
+lib/bot/com_thetrainline/fare.rb a262026c94b1a2a219adc049b4bc7f22d2f281cf
+lib/bot/com_thetrainline/adapter.rb 5c65fcfb1665a7a79c073dd3cbd6b010acdf7b7c
+lib/bot/com_thetrainline/segment.rb 07404432132432f737a43186a716d30b961adc4e
+lib/bot/com_thetrainline/response.rb 5e50e78a3d3e3758ffb5fe0c509f59495c21159b
+lib/bot/com_thetrainline/http_transport.rb cbf4f4c460219b75ce7b07355a077b844e5f09b2
+lib/bot/com_thetrainline/com_thetrainline.rb 53ef17af24568f974f79c4399ab04ddb0bf394c8
+lib/bot/com_thetrainline/builders/segment_builder.rb 1f61a117e8d578fb4f9abbd34aac22a50705f6e7
