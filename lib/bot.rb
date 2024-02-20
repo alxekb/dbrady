@@ -2,7 +2,6 @@
 
 require 'date'
 require 'nokogiri'
-require 'pry'
 
 require 'bot/com_thetrainline/com_thetrainline'
 require 'bot/com_thetrainline/adapter'
