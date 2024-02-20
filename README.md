@@ -13,9 +13,32 @@ ComThetrainline::Adapter.new(html_string)
 
 ```
 
-## response example
+## Usage and response example
+
+clone and cd to the project
 
 ```ruby
+irb
+irb(main):001> require './lib/bot'
+=> true
+irb(main):002> Bot::ComThetrainline.find("Munchen", "Paris", DateTime.now)
+=>
+[#<struct Bot::ComThetrainline::Segment::ENTRY
+  departure_station="London",
+  departure_at=#<DateTime: 2024-02-18T08:01:00+00:00 ((2460359j,28860s,0n),+0s,2299161j)>,
+  arrival_station="Paris",
+  arrival_at=#<DateTime: 2024-02-18T11:35:00+01:00 ((2460359j,38100s,0n),+3600s,2299161j)>,
+  service_agencies=["thetrainline"],
+  duration_in_minutes=154,
+  changeovers=0,
+  products=["Train • €250.00", "Bus"],
+  fares=
+   [#<struct Bot::ComThetrainline::Fare name="standard", price_in_cents=25000, currency="€", comfort_class=2>,
+➜  dbrady_trainline git:(feature/add_bot) ✗ irb
+irb(main):001> require './lib/bot'
+=> true
+irb(main):002> Bot::ComThetrainline.find("Munchen", "Paris", DateTime.now)
+=>
 [#<struct Bot::ComThetrainline::Segment::ENTRY
   departure_station="London",
   departure_at=#<DateTime: 2024-02-18T08:01:00+00:00 ((2460359j,28860s,0n),+0s,2299161j)>,
@@ -114,6 +137,7 @@ ComThetrainline::Adapter.new(html_string)
   arrival_station="Paris",
   arrival_at=#<DateTime: 2024-02-18T20:02:00+01:00 ((2460359j,68520s,0n),+3600s,2299161j)>,
   service_agencies=["thetrainline"],
+  service_agencies=["thetrainline"],
   duration_in_minutes=151,
   changeovers=0,
   products=["Train • €250.00", "Bus"],
@@ -163,6 +187,5 @@ ComThetrainline::Adapter.new(html_string)
   duration_in_minutes=137,
   changeovers=0,
   products=["Train • €250.00", "Bus"],
-  fares=[#<struct Bot::ComThetrainline::Fare name="standard", price_in_cents=31000, currency="€", comfort_class=1>]>]
- ESC
+irb(main):003> exit
 ```
