@@ -8,7 +8,7 @@ clone and cd to the project
 irb
 irb(main):001> require './lib/bot'
 => true
-irb(main):002> Bot::ComThetrainline.find("Munchen", "Paris", DateTime.now)
+irb(main):002> Bot::ComThetrainline.find("London", "Paris", DateTime.now)
 =>
 [#<struct Bot::ComThetrainline::Segment::ENTRY
   departure_station="London",
