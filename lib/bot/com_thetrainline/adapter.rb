@@ -6,9 +6,8 @@ module Bot
     class Adapter
       # Parses an HTML response and extracts segments
       #
-      # @param response_html [Nokogiri::HTML4::Document] The HTML response to parse
-      # @return [TheTrainline::Response] The parsed response
-      # Extract segments from the HTML (implementation is not implemented)
+      # @param doc [Nokogiri::HTML4::Document] The HTML response to parse
+      # Extract segments from the HTML
       def consume(doc)
         @doc = doc
 
@@ -21,11 +20,6 @@ module Bot
 
       def arrival_station
         @arrival_station ||= doc.at_css('input[name="to.search"]').attributes['value'].value
-      end
-
-      def duration_and_changeovers
-        doc.at_css('[data-test="journey-details-link"]').text.strip
-        @duration, @changeovers = duration_and_changeovers.scan(/\d+/)
       end
 
       def products

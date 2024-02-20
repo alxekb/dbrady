@@ -12,8 +12,8 @@ module Bot
     #
     # == Example
     #
-    #   Bot.find('London', 'Manchester', DateTime.now)
-    #   # => [Segment]
+    #   Bot::ComThetrainline.find('London', 'Manchester', DateTime.now)
+    #   # => [Bot::ComThetrainline::Segment::ENTRY]
     def self.find(from, to, departure_at)
       new.find(from, to, departure_at)
     end
@@ -21,13 +21,13 @@ module Bot
     # The transport attribute is responsible for making HTTP requests
     # In this naive implementation it just returns a mock of an HTML document
     #
-    # @param transport [ComThetrainline::HttpTransport] The transport to use
-    # @param adapter [ComThetrainline::Adapter] The adapter to use to convert document to a consumable object
+    # @param transport [Bot::ComThetrainline::HttpTransport] The transport to use
+    # @param adapter [Bot::ComThetrainline::Adapter] The adapter to use to convert document to a consumable object
     #
     # == Example
-    #   transport = ComThetrainline::HttpTransport.new
-    #   adapter = ComThetrainline::Adapter.new
-    #   ComThetrainline.new(transport: transport, adapter: adapter)
+    #   transport = Bot::ComThetrainline::HttpTransport.new
+    #   adapter = Bot::ComThetrainline::Adapter.new
+    #   Bot::ComThetrainline.new(transport: transport, adapter: adapter)
     def initialize(transport: ComThetrainline::HttpTransport.new, adapter: ComThetrainline::Adapter.new)
       @transport = transport
       @adapter = adapter
@@ -41,7 +41,7 @@ module Bot
     # @return [Array<Segment>] The found segments
     #
     # == Example
-    #   ComThetrainline.find('London', 'New York', DateTime.now)
+    #   Bot::ComThetrainline.find('London', 'New York', DateTime.now)
     #
     # I don\'t like the way I set/use instance variables in this example. But it handy to have this
     # variables here instead of passing arguments through the methods.

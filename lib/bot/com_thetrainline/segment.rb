@@ -3,9 +3,15 @@
 module Bot
   class ComThetrainline
     # Bot::ComThetrainline::Segment
+    # Dirty noisy class, after I did all the work on it, I realized that this class
+    # is not doing what it should be doing. I would rather to create a layout class
+    # for the page and pull attributes from there. But let's accept this since it is
+    # a test task and it is not intended to be extedned/modified and used in production.
     class Segment
       attr_reader :departure_station, :arrival_station, :service_agencies, :products
 
+      # I chose struct over hash because struct is faster for the lookups and it has
+      # fancy accessors.
       ENTRY = Struct.new(
         :departure_station,
         :departure_at,
@@ -48,6 +54,25 @@ module Bot
 
       attr_reader :journey
 
+      # it is highly likely that I extract this to a builder class
+      def standard_ticket
+        Fare.new(price_in_cents: decorator(second_class_ticket_price)[1],
+                 name: 'standard',
+                 currency: decorator(second_class_ticket_price)[0],
+                 comfort_class: 2)
+      rescue StandardError
+        nil
+      end
+
+      def first_class_ticket
+        Fare.new(price_in_cents: decorator(first_class_ticket_price)[1],
+                 name: 'standard',
+                 currency: decorator(first_class_ticket_price)[0],
+                 comfort_class: 1)
+      rescue StandardError
+        nil
+      end
+
       def timestamps
         @timestamps ||= journey.css('div[data-test="journey-times"] time').map do |time_element|
           DateTime.parse(time_element['datetime'])
@@ -74,6 +99,7 @@ module Bot
         [standard_ticket, first_class_ticket].compact
       end
 
+      # it is not enough code to extract this to a decorator class, so I decided to keep it here, sorry :wink:
       def decorator(price_string)
         matches = price_string.match(/(€|\$)(\d+(\.\d+)?)/)
 
@@ -82,24 +108,6 @@ module Bot
         value_in_cents = (value * 100).to_i
 
         [currency_symbol, value_in_cents]
-      end
-
-      def standard_ticket
-        Fare.new(price_in_cents: decorator(second_class_ticket_price)[1],
-                 name: 'standard',
-                 currency: decorator(second_class_ticket_price)[0],
-                 comfort_class: 2)
-      rescue StandardError
-        nil
-      end
-
-      def first_class_ticket
-        Fare.new(price_in_cents: decorator(first_class_ticket_price)[1],
-                 name: 'standard',
-                 currency: decorator(first_class_ticket_price)[0],
-                 comfort_class: 1)
-      rescue StandardError
-        nil
       end
 
       def ticket_containers

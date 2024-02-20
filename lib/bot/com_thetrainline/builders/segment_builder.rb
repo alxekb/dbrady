@@ -36,6 +36,9 @@ module Bot
 
         attr_reader :journey
 
+        # I decided to parse entries from the journey DOM element here because
+        # it feels more natural to define entries in the segment builder.
+        # But it general I'm not 100% satisfied with the way it is done.
         def entries
           @entries ||= journeys.css("[data-test^='eu-journey-row-'][data-test$='-wrapper']")
         end

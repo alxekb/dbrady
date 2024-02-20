@@ -9,11 +9,8 @@ module Bot
       # @param from [String] The departure station
       # @param to [String] The arrival station
       # @param departure_at [DateTime] The desired departure time
-      # @return [TheTrainline::Response] The parsed response
+      # @return [Nokogiri::HTML::Document] The parsed response
       def fetch(_from, _to, _departure_at)
-        # Use Selenium to fetch the HTML response (not implemented)
-        # ...
-        # Parse the HTML response using TheTrainline::Adapter
         doc
       end
 
